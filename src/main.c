@@ -11,9 +11,15 @@
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
+#include <stdio.h>
 
 int main(int argc, char*argv[], char*envp[])
 {
-	pipex(argc, argv, envp);
-	return (0);
-}
+	int i = 0;
+
+	while(envp[i])
+	{
+		printf("%s\n", envp[i]);
+	i++;
+	}
+}	

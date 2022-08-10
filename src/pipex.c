@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
+/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:21:35 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/09 20:14:12 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/10 20:20:19 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,45 @@ int main(int argc, char*argv[], char*envp[])
 	return (0);
 }
 
-void	first_process(int fd, char*argv[], char* envp[])
+void	executer(char *cmd, char *envp[])
+{
+	int		a;
+	char	**command;
+	char	**paths;
+	char	**which_path;
+	
+	command = ft_split(cmd, ' ');
+	paths = splitting_paths(envp);
+	if (paths == NULL)
+		perror("Error: no path")
+	while(paths[a])
+	{
+		// which_path = here we will find our path, using split in envp
+		if (access(which_path, F_OK == 0))
+		{
+			if (execve(which_path, command, NULL == -1))
+				perror("ERROR");
+		}
+		free(which_path);
+		a++;
+	}
+}
+
+void	first_process(int fd[], char*argv[], char*envp[])
 {
 	int fdp1;
-
+	
+	fdp1 = open(argv[1], O_RDONLY);
+	if (fdp1 < 0)
+		perror("Error");
+	if(dup2(fd[1], STDOUT_FILENO) == -1)
+		perror("ERROR");
+	if(dup2(fdp1, STDIN_FILENO) == -1)
+		perror("ERROR");
+	close(fd[0]);
+	claose(fdp1);
+	close(fd[1]);
+	execute(argv[2], envp);
 
 // this function should apply open into the argv[1], first file, then
 // it should atribute the fd of argv[1] to a variable. We duplicate fd[1] and pass the
@@ -33,7 +68,24 @@ void	first_process(int fd, char*argv[], char* envp[])
 
 void	second_process(int fd, char*argv[], char*envp[])
 {
-// 
+	int fdp2;
+
+	fdp2 = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	if (fdp2 < 0)
+		perror("Erro");
+	if (dup2(fd[0], STDIN_FILENO == -1)
+		perror("Erro");
+	if (dup2(fd[1], STDOUT_FILENO == -1))
+		perror("Erro");
+	close(fd[0]);
+	close(fdp2);	
+	
+
+// this function should apply open into the argv[1], first file, then
+// it should atribute the fd of argv[1] to a variable. We duplicate fd[1] and pass the
+// standard output to it
+// then, We duplicate fdp1 and pass the stdinput to it;  
+// Por fim, passamos para a função execute o cmd2 argv[4] envp
 }
 
 

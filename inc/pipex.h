@@ -16,8 +16,11 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <fcntl.h>
 
-void pipex(int argc, char*argv[], char*envp[]);
+void	pipex(int argc, char*argv[], char*envp[]);
+void	executer(char *cmd, char*envp[]);
+void	first_process(int fd[], char*argv[], char*envp[]);
 
 
 #endif
