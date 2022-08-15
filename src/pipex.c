@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:21:35 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/10 20:20:19 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/15 20:21:12 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ void	executer(char *cmd, char *envp[])
 	int		a;
 	char	**command;
 	char	**paths;
-	char	**which_path;
+	char	*which_path;
 	
-	command = ft_split(cmd, ' ');
-	paths = splitting_paths(envp);
+	// command = ft_split(cmd, ' '); still including it. 
+	// paths = splitting_paths(envp); I still need to create this function in utils.c 
 	if (paths == NULL)
-		perror("Error: no path")
+		perror("Error: no path");
 	while(paths[a])
 	{
-		// which_path = here we will find our path, using split in envp
+		which_path = ft_strjoin_path(paths[a], '/', command[a]);
 		if (access(which_path, F_OK == 0))
 		{
-			if (execve(which_path, command, NULL == -1))
+			if (execve(which_path, command, NULL) == -1)
 				perror("ERROR");
 		}
 		free(which_path);
@@ -55,9 +55,9 @@ void	first_process(int fd[], char*argv[], char*envp[])
 	if(dup2(fdp1, STDIN_FILENO) == -1)
 		perror("ERROR");
 	close(fd[0]);
-	claose(fdp1);
+	close(fdp1);
 	close(fd[1]);
-	execute(argv[2], envp);
+	executer(argv[2], envp);
 
 // this function should apply open into the argv[1], first file, then
 // it should atribute the fd of argv[1] to a variable. We duplicate fd[1] and pass the
@@ -66,17 +66,17 @@ void	first_process(int fd[], char*argv[], char*envp[])
 // Por fim, passamos para a função execute o cmd1 argv[2] envp
 }
 
-void	second_process(int fd, char*argv[], char*envp[])
+void	second_process(int *fd, char*argv[], char*envp[])
 {
 	int fdp2;
 
 	fdp2 = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (fdp2 < 0)
-		perror("Erro");
-	if (dup2(fd[0], STDIN_FILENO == -1)
-		perror("Erro");
+		perror("ERROR");
+	if (dup2(fd[0], STDIN_FILENO) == -1)
+		perror("ERROR");
 	if (dup2(fd[1], STDOUT_FILENO == -1))
-		perror("Erro");
+		perror("ERROR");
 	close(fd[0]);
 	close(fdp2);	
 	
@@ -97,7 +97,7 @@ void	pipex(int argc, char*argv[], char*envp[])
 	int pid2;
 
 	if(argc != 5)
-		write(1, "Wrong number of arguments!", 27);
+		write(1, "Wrong number of arguments!\n", 28);
 	pipe(fd);
 	if (pipe(fd) == -1) // pipe return -1 when error 
 		perror("Error: ");
