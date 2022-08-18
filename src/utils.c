@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
+/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:20:40 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/16 20:32:28 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:07:45 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 char	**splitting_paths(char *envp[])
 {
-	//Basically, we will search for PATH in the four first digit, then we wil return a split in it with ft_split, using : as 
-	// a delimeter. 
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-
-	while(envp[i])
+	while (envp[i])
 	{
-		if(ft_strncmp(envp[i], "PATH=", 5 ) == 0)
-			return(ft_split(envp[i], ':'));
-		if(envp[i][(j + 1)] == '\0')
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			return (ft_split(envp[i], ':')); // I think that it should have a + 5 here. 
+		if (envp[i][(j + 1)] == '\0')
 		{
 			i++;
 			j = -1;
@@ -36,28 +33,42 @@ char	**splitting_paths(char *envp[])
 	return (0);
 }
 
-char	*ft_strjoin_path(char const *s1, char connector, char const *s2)
+char	*ft_strjoin_paths(char const *s1, char connector, char const *s2)
 {
-// this function will join both commands received as arguments.
-	return (NULL);
+	char	*p;
+	size_t	a;
+	size_t	b;
+
+	p = malloc((ft_strlen(s1) + ft_strlen(s2)) * (sizeof(char *)));
+	if (p == 0)
+		return (NULL);
+	a = 0;
+	b = 0;
+	while (a < ft_strlen(s1))
+	{
+		p[a] = s1[a];
+		a++;
+	}
+	p[a++] = connector;
+	while (a < ft_strlen(s1) + ft_strlen(s2))
+	{
+		p[a] = s2[b];
+		a++;
+		b++;
+	}
+	p[a] = '\0';
+	return (p);
 }
 
 void	liberator(char **freeing)
 {
-	// this function will free all the allocated memory. since we are woring with a **, we need to be very caurefull with it. 
-} 
+	int	i;
 
-int main()
-{
-	char envp[0][9] = "envevne";
-	char envp[1][33] = "PATH=psydenst:psydenst:psydenst";
-	
-	int i = 0;
-	char **result = splitting_paths(envp);
-	
-	while(i < 10)
+	i = 0;
+	while (freeing[i])
 	{
-	printf("%s\n", result[i]);
-	i++;
+		free(freeing[i]);
+		i++;
 	}
+	free(freeing);
 }
