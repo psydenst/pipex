@@ -15,20 +15,18 @@
 char	**splitting_paths(char *envp[])
 {
 	int	i;
-	int	j;
+	char	**paths;
 
 	i = 0;
-	j = 0;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			return (ft_split(envp[i], ':')); // I think that it should have a + 5 here. 
-		if (envp[i][(j + 1)] == '\0')
 		{
-			i++;
-			j = -1;
+			paths = ft_split(envp[i] + 5, ':');
+			return(paths);
+
 		}
-		j++;
+		i++;
 	}
 	return (0);
 }
@@ -39,7 +37,7 @@ char	*ft_strjoin_paths(char const *s1, char connector, char const *s2)
 	size_t	a;
 	size_t	b;
 
-	p = malloc((ft_strlen(s1) + ft_strlen(s2)) * (sizeof(char *)));
+	p = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 2) * (sizeof(char)));
 	if (p == 0)
 		return (NULL);
 	a = 0;

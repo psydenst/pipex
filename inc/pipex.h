@@ -23,7 +23,8 @@
 
 void	pipex(int argc, char*argv[], char*envp[]);
 void	executer(char *cmd, char*envp[]);
-void	first_process(int fd[], char*argv[], char*envp[]);
+void	first_process(int *fd, char *argv[], char *envp[]);
+void	second_process(int *fd, char *argv[], char *envp[]);
 char	**splitting_paths(char *envp[]);
 char	*ft_strjoin_paths(char const *s1, char connector, char const *s2);
 void	liberator(char **freeing);
