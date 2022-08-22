@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psydenst <psydenst@student.42.rio>         +#+  +:+       +#+        */
+/*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:11:28 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/18 16:34:00 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/22 18:20:22 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "../inc/ft_printf/libft/libft.h"
-#include "../inc/ft_printf/libftprintf.h"
+#include "../libft/libft.h"
 
 void	pipex(int argc, char*argv[], char*envp[]);
 void	executer(char *cmd, char*envp[]);
@@ -28,4 +27,5 @@ void	second_process(int *fd, char *argv[], char *envp[]);
 char	**splitting_paths(char *envp[]);
 char	*ft_strjoin_paths(char const *s1, char connector, char const *s2);
 void	liberator(char **freeing);
+void	ft_perror(char *str);
 #endif

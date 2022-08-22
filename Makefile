@@ -8,7 +8,7 @@ OBJ		=	${SRC:.c=.o}
 OBJ_BONUS	=	${SRC_BONUS:.c=.o}
 
 NAME		=	pipex
-LIBFT		=	./inc/ft_printf/libft
+LIBFT		=	./libft
 CC		=	gcc
 CFLAGS		=	-Wall -Wextra -Werror 
 INCLUDE		=	-I./inc/pipex.h

@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:20:40 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/18 19:07:45 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:06:50 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,15 @@ char	**splitting_paths(char *envp[])
 {
 	int	i;
 	char	**paths;
-
+	
 	i = 0;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-		{
 			paths = ft_split(envp[i] + 5, ':');
-			return(paths);
-
-		}
 		i++;
 	}
-	return (0);
+	return (paths);
 }
 
 char	*ft_strjoin_paths(char const *s1, char connector, char const *s2)
@@ -48,13 +44,14 @@ char	*ft_strjoin_paths(char const *s1, char connector, char const *s2)
 		a++;
 	}
 	p[a++] = connector;
-	while (a < ft_strlen(s1) + ft_strlen(s2))
+	while (a < ft_strlen(s1) + ft_strlen(s2) + 2)
 	{
 		p[a] = s2[b];
 		a++;
 		b++;
 	}
 	p[a] = '\0';
+	printf("O valor de p na strjoin_path é:%s\n", p);
 	return (p);
 }
 
@@ -69,4 +66,10 @@ void	liberator(char **freeing)
 		i++;
 	}
 	free(freeing);
+}
+
+void	ft_perror(char *str)
+{
+	perror(str);
+	exit(EXIT_FAILURE); 
 }
