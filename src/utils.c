@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:20:40 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/22 19:06:50 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:07:58 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*ft_strjoin_paths(char const *s1, char connector, char const *s2)
 		b++;
 	}
 	p[a] = '\0';
-	printf("O valor de p na strjoin_path é:%s\n", p);
 	return (p);
 }
 
