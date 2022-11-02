@@ -1,6 +1,0 @@
-O valor de p na strjoin_path é:/usr/local/bin/blabla
-O valor de p na strjoin_path é:/usr/bin/blabla
-O valor de p na strjoin_path é:/bin/blabla
-O valor de p na strjoin_path é:/usr/sbin/blabla
-O valor de p na strjoin_path é:/sbin/blabla
-O valor de p na strjoin_path é:/Library/Apple/usr/bin/blabla

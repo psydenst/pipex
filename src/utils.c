@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:20:40 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/24 17:07:58 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:25:40 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	**splitting_paths(char *envp[])
 {
-	int	i;
+	int		i;
 	char	**paths;
-	
+
 	i = 0;
 	while (envp[i])
 	{
@@ -70,5 +70,5 @@ void	liberator(char **freeing)
 void	ft_perror(char *str)
 {
 	perror(str);
-	exit(EXIT_FAILURE); 
+	exit(EXIT_FAILURE);
 }

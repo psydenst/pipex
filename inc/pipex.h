@@ -6,19 +6,19 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:11:28 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/22 18:20:22 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:33:03 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
-#define PIPEX_H
+# define PIPEX_H
 
-#include <unistd.h>
-#include <sys/wait.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include "../libft/libft.h"
+# include <unistd.h>
+# include <sys/wait.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include "../libft/libft.h"
 
 void	pipex(int argc, char*argv[], char*envp[]);
 void	executer(char *cmd, char*envp[]);

@@ -6,7 +6,7 @@
 /*   By: psydenst <psydenst@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:21:35 by psydenst          #+#    #+#             */
-/*   Updated: 2022/08/24 17:20:37 by psydenst         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:57:29 by psydenst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	executer(char *cmd, char *envp[])
 	while (paths[a])
 	{
 		which_path = ft_strjoin_paths(paths[a], '/', command[0]);
-		if (access(which_path, F_OK | X_OK) == 0)
+		if (access(which_path, F_OK & X_OK) == 0)
 		{
 			if (execve(which_path, command, NULL) == -1)
 				ft_perror("ERROR");
